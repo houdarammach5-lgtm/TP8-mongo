@@ -1,0 +1,23 @@
+1
+use ecommerceDB
+a db.creatUser({
+    user:"administrateur",
+    pwd:"motdepasseadmin",
+    roles:[{role:"dbadmin",db:"ecommerceDB"}]
+})
+b db.creatUser({
+    user:"Utilisateur",
+    pwd:"motdepasseuser",
+    roles:[{role:"db.admin",db:"ecommerceDB"}]
+})
+c db.creatUser({
+    user:"visiteur",
+    pwd:"motdepassevisiteur",
+    roles:[{role:"read",db:"ecommerceDB"}]
+});
+2
+mongo -u visiteur -p motdepassevisiteur --authentificationDataBase ecommerceDB
+3
+db.dropUser("administrateur")
+db.dropUser("Utilisateur")
+db.dropUser("visiteur")
